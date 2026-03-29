@@ -64,6 +64,7 @@ export class PageMain extends PageElement {
 	}
 
 	previous() {
+		if (!store.query) return
 		const elements = this.itemElements
 		const current = this.selectedItemElement
 		let previousIndex = 0
@@ -76,6 +77,7 @@ export class PageMain extends PageElement {
 		)
 	}
 	next() {
+		if (!store.query) return
 		const elements = this.itemElements
 		const current = this.selectedItemElement
 		let nextIndex = 0
@@ -87,6 +89,7 @@ export class PageMain extends PageElement {
 	}
 
 	clickSelectedItemElement() {
+		if (!store.query) return
 		this.selectedItemElement?.click()
 	}
 }
