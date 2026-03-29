@@ -36,8 +36,6 @@ class GamepadController extends ReactiveController {
 			this.gamepad = gamepad
 			const map = gamepad.mapping
 
-			getMainPage()?.next()
-
 			gamepad.for(map.LEFT_STICK_LEFT).before(({mode}) => {
 				switch (mode) {
 					case Mode.NORMAL:
