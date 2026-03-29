@@ -23,6 +23,9 @@ declare global {
 	md-list-item[selected] {
 		background-color: var(--md-sys-color-surface-container-highest);
 	}
+	md-list-item[inert] {
+		opacity: 0.4;
+	}
 `)
 export class PageMain extends PageElement {
 	@state() selectedQuestionId = -1
@@ -39,6 +42,7 @@ export class PageMain extends PageElement {
 					(question) => {
 						return html`<!-- -->
 							<md-list-item
+								?inert="${!store.query}"
 								?selected="${this.selectedQuestionId === question.created}"
 								href="${chatGptUrl(
 									question.value.replaceAll('%s', `"${store.query}"`),

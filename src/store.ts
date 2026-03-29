@@ -13,6 +13,10 @@ export class AppStore extends ReactiveController {
 
 	F = new FormBuilder(this)
 
+	protected firstUpdated(_changedProperties: PropertyValues): void {
+		this.query = ''
+	}
+
 	protected updated(changed: PropertyValues<this>) {
 		// const {hash, router} = await import('./router.js')
 		if (changed.has('page')) {
