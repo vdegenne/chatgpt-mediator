@@ -43,10 +43,15 @@ export class AppShell extends MaterialShellChild {
 						<md-icon>${SVG_CHATGPT}</md-icon>
 					</md-icon-button>
 					<span slot="headline"
-						>${store.query ||
-						html`<b class="text-(--md-sys-color-error)"
-							>Use ?q=... in the URL to unlock</b
-						>`}
+						>${store.query
+							? html`<span
+									class="font-[EB_Garamond] text-3xl relative -top-1 text-bold"
+									primary
+									>${store.query}</span
+								>`
+							: html`<b class="text-(--md-sys-color-error)"
+									>Use ?q=... in the URL to unlock</b
+								>`}
 					</span>
 				</md-list-item>
 
