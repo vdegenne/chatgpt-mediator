@@ -67,7 +67,7 @@ export class PageMain extends PageElement {
 		if (!store.query) return
 		const elements = this.itemElements
 		const current = this.selectedItemElement
-		let previousIndex = 0
+		let previousIndex = elements.length - 1
 		if (current) {
 			const currIndex = [...elements].indexOf(current)
 			previousIndex = (currIndex - 1 + elements.length) % elements.length
