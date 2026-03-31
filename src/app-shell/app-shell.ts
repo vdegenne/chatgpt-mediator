@@ -44,9 +44,7 @@ export class AppShell extends MaterialShellChild {
 					</md-icon-button>
 					<span slot="headline"
 						>${store.query
-							? html`<span
-									class="font-[EB_Garamond] text-3xl relative -top-1 text-bold"
-									primary
+							? html`<span class="text-3xl relative -top-1 text-bold" primary
 									>${store.query}</span
 								>`
 							: html`<b class="text-(--md-sys-color-error)"

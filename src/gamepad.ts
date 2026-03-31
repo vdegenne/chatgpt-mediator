@@ -57,6 +57,28 @@ class GamepadController extends ReactiveController {
 						break
 				}
 			})
+
+			gamepad
+				.for(map.LEFT_STICK_UP)
+				.before(({mode}) => {
+					switch (mode) {
+						case Mode.NORMAL:
+							upRepeater.start(mode)
+							break
+					}
+				})
+				.after(() => upRepeater.stop())
+			gamepad
+				.for(map.LEFT_STICK_DOWN)
+				.before(({mode}) => {
+					switch (mode) {
+						case Mode.NORMAL:
+							downRepeater.start(mode)
+							break
+					}
+				})
+				.after(() => downRepeater.stop())
+
 			gamepad.for(map.RIGHT_BUTTONS_LEFT).before(({mode}) => {
 				switch (mode) {
 					case Mode.NORMAL:
