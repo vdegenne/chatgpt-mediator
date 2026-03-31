@@ -44,9 +44,7 @@ export class AppShell extends MaterialShellChild {
 					</md-icon-button>
 					<span slot="headline"
 						>${store.query
-							? html`<span class="text-3xl text-bold" primary
-									>${store.query}</span
-								>`
+							? html`<span class="text-bold">${store.query}</span>`
 							: html`<b class="text-(--md-sys-color-error)"
 									>Use ?q=... in the URL to unlock</b
 								>`}
