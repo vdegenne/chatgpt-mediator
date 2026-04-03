@@ -75,7 +75,7 @@
 		"@vdegenne/debouncer": "^1.0.9",
 		"@vdegenne/debug": "^0.1.30",
 		"@vdegenne/forms": "^0.1.72",
-		"@vdegenne/links": "^1.8.12",
+		"@vdegenne/links": "^1.8.13",
 		"@vdegenne/lit-debug": "^0.1.2",
 		"@vdegenne/material-color-helpers": "^1.11.7",
 		"@vdegenne/mini-gamepad": "^0.4.15",
