@@ -45,13 +45,17 @@ export class PageMain extends PageElement {
 								?inert="${!store.query}"
 								?selected="${this.selectedQuestionId === question.created}"
 								href="${chatGptUrl(
-									question.value.replaceAll('%s', `"${store.query}"`),
+									question.value.replaceAll('%s', `${store.query}`),
 								)}"
 								@click=${() => store.incrementWeight(question)}
 								data-id=${question.created}
 							>
 								<div slot="headline">
-									${formatQuestionValue(question.value, '●')}
+									<!-- ${formatQuestionValue(question.value, '●')} -->
+									${formatQuestionValue(
+										question.value,
+										`<md-assist-chip class="" inert>${store.query}</md-assist-chip>`,
+									)}
 								</div>
 
 								<div slot="end">${question.weight}</div>
