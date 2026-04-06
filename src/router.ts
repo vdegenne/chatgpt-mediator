@@ -27,6 +27,6 @@ export const router = new Router(async ({location, parts}) => {
 
 	const params = new URLSearchParams(location.search)
 	if (params.has('q')) {
-		store.query = params.get('q')!
+		store.query = params.get('q')!.trim()
 	}
 })
