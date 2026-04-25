@@ -1,6 +1,8 @@
 import {cquerySelector} from 'html-vision'
 import {DEV} from './constants.js'
 import {getThemeStore, openSettingsDialog} from './imports.js'
+import {chatGptUrl} from '@vdegenne/links'
+import {store} from './store.js'
 
 const inputNames = ['INPUT', 'TEXTAREA', 'MD-FILLED-TEXT-FIELD']
 export function eventIsFromInput(event: Event) {
@@ -38,4 +40,13 @@ window.addEventListener('keypress', async (event: KeyboardEvent) => {
 	}
 })
 
-export {}
+document.addEventListener('voice-recorder-submit', async (event: Event) => {
+	let {input, mode} = ((event as CustomEvent).detail ?? {}) as {
+		input: string
+		mode: number
+	}
+	input = input.trim().replace(/\s+/g, ' ').toLowerCase()
+	if (input && mode === 0 && store.query) {
+		window.location.href = chatGptUrl(`${input} ${store.query} ?`)
+	}
+})

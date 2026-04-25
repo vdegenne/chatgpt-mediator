@@ -17,12 +17,17 @@ export const defaultQuestions: medchat.Question[] = [
 	},
 	{
 		created: Date.now() + 20,
+		value: '%s',
+		weight: 0,
+	},
+	{
+		created: Date.now() + 30,
 		value:
 			'Etymologie de "%s" ? Latin et/ou grec ? (Décompose quand tu peux pour expliquer les parties, et pour chaque partie donne d\'autres mots l\'utilisant pour mieux mémoriser. Ne fais pas trop long. Merci',
 		weight: 0,
 	},
 	{
-		created: Date.now() + 30,
+		created: Date.now() + 40,
 		value: '%s ?',
 		weight: 0,
 	},
