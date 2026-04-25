@@ -40,6 +40,10 @@ export class PageMain extends PageElement {
 					store.questions,
 					(q) => q.created,
 					(question) => {
+						const query =
+							store.query.length > 20
+								? store.query.slice(0, 20) + '...'
+								: store.query
 						return html`<!-- -->
 							<md-list-item
 								?inert="${!store.query}"
@@ -54,7 +58,7 @@ export class PageMain extends PageElement {
 									<!-- ${formatQuestionValue(question.value, '●')} -->
 									${formatQuestionValue(
 										question.value,
-										`<md-assist-chip class="" inert>${store.query}</md-assist-chip>`,
+										`<md-assist-chip class="" inert>${query}</md-assist-chip>`,
 									)}
 								</div>
 
