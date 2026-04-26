@@ -1,0 +1,1 @@
+import{b as p,t as g,q as i,w as m,c as v,u as w}from"./index-Cv2BJqv-.js";import{P as O}from"./PageElement-D2hmo3x6.js";var P=Object.getOwnPropertyDescriptor,c=(t,s,n,a)=>{for(var e=a>1?void 0:a?P(s,n):s,r=t.length-1,o;r>=0;r--)(o=t[r])&&(e=o(e)||e);return e};let l=class extends O{render(){return p`404 NOT FOUND`}};l=c([g("page-404"),i(w),m(v``)],l);export{l as Page404};
