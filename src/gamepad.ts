@@ -33,7 +33,8 @@ class GamepadController extends ReactiveController {
 			focusDeadTimeMs: 200,
 		})
 		minigp.onConnect((gamepad) => {
-			document.body.requestPointerLock()
+			// document.body.requestPointerLock()
+			getMainPage().gamepad = true
 			this.gamepad = gamepad
 			const map = gamepad.mapping
 

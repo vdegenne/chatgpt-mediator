@@ -7,18 +7,18 @@ export const availablePages = ['main', 'search'] as const
 export const defaultQuestions: medchat.Question[] = [
 	{
 		created: Date.now(),
-		value: 'C\'est quoi "%s" ?',
-		weight: 55,
-	},
-	{
-		created: Date.now() + 10,
-		value: 'C\'est qui "%s" ?',
-		weight: 7,
+		value: 'C\'est quoi ou qui "%s" ?',
+		weight: 58,
 	},
 	{
 		created: Date.now() + 50,
 		value:
 			"Peux-tu analyser le contenu de %s et me faire un résumé s'il the plait ? Merci",
+		weight: 6,
+	},
+	{
+		created: Date.now() + 60,
+		value: 'Explique "%s"',
 		weight: 0,
 	},
 	{
@@ -29,12 +29,12 @@ export const defaultQuestions: medchat.Question[] = [
 	{
 		created: Date.now() + 30,
 		value:
-			'Etymologie de "%s" ? Latin et/ou grec ? (Décompose quand tu peux pour expliquer les parties, et pour chaque partie donne d\'autres mots l\'utilisant pour mieux mémoriser. Ne fais pas trop long. Merci',
-		weight: 140,
+			"Etymologie de \"%s\" ? Latin et/ou grec ? L'ideal c'est que tu découpes en particles/radicaux, et pour chaque particule tu montres d'autres mots d'exemple (e.g. a- -> atypique, amorphe, ...), de cette maniere je peux plus facilement mémoriser, mais pense bien a faire des sections pour chaque particule, et fait simple. Merci",
+		weight: 146,
 	},
 	{
 		created: Date.now() + 40,
 		value: '%s ?',
-		weight: 141,
+		weight: 147,
 	},
 ]

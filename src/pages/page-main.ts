@@ -3,7 +3,13 @@ import {withController} from '@snar/lit'
 import {chatGptUrl} from '@vdegenne/links'
 import {css, html} from 'lit'
 import {withStyles} from 'lit-with-styles'
-import {customElement, query, queryAll, state} from 'lit/decorators.js'
+import {
+	customElement,
+	property,
+	query,
+	queryAll,
+	state,
+} from 'lit/decorators.js'
 import {repeat} from 'lit/directives/repeat.js'
 import {store} from '../store.js'
 import {formatQuestionValue} from '../utils.js'
@@ -20,6 +26,9 @@ declare global {
 @withStyles(css`
 	:host {
 	}
+	:host([gamepad]) md-list-item {
+		--md-ripple-hover-color: transparent;
+	}
 	md-list-item[selected] {
 		background-color: var(--md-sys-color-surface-container-highest);
 	}
@@ -30,21 +39,24 @@ declare global {
 export class PageMain extends PageElement {
 	@state() selectedQuestionId = -1
 
+	@property({type: Boolean, reflect: true}) gamepad = false
+
 	@queryAll('md-list-item') itemElements!: MdListItem[]
 	@query('md-list-item[selected]') selectedItemElement!: MdListItem
 
 	render() {
 		return html`<!---->
-			<md-list>
+			<md-list class="p-0">
 				${repeat(
 					store.questions,
 					(q) => q.created,
-					(question) => {
+					(question, i) => {
 						const query =
 							store.query.length > 20
 								? store.query.slice(0, 20) + '...'
 								: store.query
 						return html`<!-- -->
+							<md-divider></md-divider>
 							<md-list-item
 								?inert="${!store.query}"
 								?selected="${this.selectedQuestionId === question.created}"
@@ -53,7 +65,14 @@ export class PageMain extends PageElement {
 								)}"
 								@click=${() => store.incrementWeight(question)}
 								data-id=${question.created}
+								type="text"
 							>
+								<div
+									slot="start"
+									class="text-xs text-(--md-sys-color-outline-variant)"
+								>
+									${i}
+								</div>
 								<div slot="headline">
 									<!-- ${formatQuestionValue(question.value, '●')} -->
 									${formatQuestionValue(
@@ -67,6 +86,7 @@ export class PageMain extends PageElement {
 							<!-- -->`
 					},
 				)}
+				<md-divider></md-divider>
 			</md-list>
 			<!----> `
 	}
