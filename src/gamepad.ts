@@ -3,6 +3,9 @@ import {MGamepad, MiniGamepad, Mode} from '@vdegenne/mini-gamepad'
 import {Repeater} from '@vdegenne/mini-gamepad/repeater.js'
 import {state} from 'lit/decorators.js'
 import {getMainPage} from './pages/index.js'
+import {store} from './store.js'
+import toast from 'toastit'
+import {copyToClipboard} from './utils.js'
 
 const upRepeater = new Repeater({
 	action(mode) {
@@ -79,6 +82,20 @@ class GamepadController extends ReactiveController {
 					}
 				})
 				.after(() => downRepeater.stop())
+
+			gamepad.for(map.LEFT_STICK_PRESS).before(({mode}) => {
+				switch (mode) {
+					case Mode.SECONDARY:
+						const question = store.questions.find(
+							(q) => q.created === getMainPage().selectedQuestionId,
+						)
+						if (question && store.query) {
+							copyToClipboard(question.value.replaceAll('%s', store.query))
+							toast('Copied')
+						}
+						break
+				}
+			})
 
 			gamepad.for(map.RIGHT_BUTTONS_LEFT).before(({mode}) => {
 				switch (mode) {

@@ -63,8 +63,8 @@ export class PageMain extends PageElement {
 								href="${chatGptUrl(
 									question.value.replaceAll('%s', `${store.query}`),
 								)}"
-								@click=${() => store.incrementWeight(question)}
-								data-id=${question.created}
+								@click="${() => store.incrementWeight(question)}"
+								data-id="${question.created}"
 								type="text"
 							>
 								<div
