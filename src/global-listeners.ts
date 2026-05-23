@@ -51,6 +51,10 @@ document.addEventListener('voice-recorder-submit', async (event: Event) => {
 	}
 })
 
-document.addEventListener('contextmenu', (event: MouseEvent) => {
-	event.preventDefault() // empêche le menu natif
-})
+// document.addEventListener('contextmenu', (event: MouseEvent) => {
+// 	if (
+// 		event.composedPath().some((i) => (i as HTMLElement).nodeName === 'MD-ITEM')
+// 	) {
+// 		// event.preventDefault() // empêche le menu natif
+// 	}
+// })

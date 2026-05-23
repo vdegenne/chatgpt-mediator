@@ -66,7 +66,7 @@ export class PageMain extends PageElement {
 								href="${chatGptUrl(
 									question.value.replaceAll('%s', `${store.query}`),
 								)}"
-								@pointerdown="${async (event: PointerEvent) => {
+								@pointerup="${async (event: PointerEvent) => {
 									if (event.button === 2) {
 										event.preventDefault()
 										try {
