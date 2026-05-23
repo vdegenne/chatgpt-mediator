@@ -14,6 +14,8 @@ import {repeat} from 'lit/directives/repeat.js'
 import {store} from '../store.js'
 import {formatQuestionValue} from '../utils.js'
 import {PageElement} from './PageElement.js'
+import {questionDialog} from '../dialogs/question-dialog.js'
+import toast from 'toastit'
 
 declare global {
 	interface HTMLElementTagNameMap {
@@ -59,13 +61,23 @@ export class PageMain extends PageElement {
 							<md-divider></md-divider>
 							<md-list-item
 								?inert="${!store.query}"
+								data-id="${question.created}"
 								?selected="${this.selectedQuestionId === question.created}"
 								href="${chatGptUrl(
 									question.value.replaceAll('%s', `${store.query}`),
 								)}"
-								@click="${() => store.incrementWeight(question)}"
-								data-id="${question.created}"
-								type="text"
+								@pointerdown="${async (event: PointerEvent) => {
+									if (event.button === 2) {
+										event.preventDefault()
+										try {
+											await questionDialog(question)
+										} catch {
+											// canceled
+										}
+									} else if (event.button === 0) {
+										store.incrementWeight(question)
+									}
+								}}"
 							>
 								<div
 									slot="start"
@@ -77,7 +89,8 @@ export class PageMain extends PageElement {
 									<!-- ${formatQuestionValue(question.value, '●')} -->
 									${formatQuestionValue(
 										question.value,
-										`<md-assist-chip class="" inert>${query}</md-assist-chip>`,
+										`<span class="border border-(--md-sys-color-primary) rounded-sm px-1 text-(--md-sys-color-primary)">${query}</span>`,
+										// `<md-assist-chip class="" inert>${query}</md-assist-chip>`,
 									)}
 								</div>
 
@@ -88,6 +101,17 @@ export class PageMain extends PageElement {
 				)}
 				<md-divider></md-divider>
 			</md-list>
+
+			<md-fab
+				class="fixed bottom-5 right-5"
+				@click=${async () => {
+					try {
+						await questionDialog()
+					} catch (err) {}
+				}}
+			>
+				<md-icon slot="icon">add</md-icon>
+			</md-fab>
 			<!----> `
 	}
 

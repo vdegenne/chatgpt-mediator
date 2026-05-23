@@ -1,6 +1,6 @@
 declare global {
 	namespace medchat {
-		interface Question {
+		interface QuestionInterface {
 			/**
 			 * You can use this as an id because it's unique
 			 */

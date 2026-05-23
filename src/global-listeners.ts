@@ -50,3 +50,7 @@ document.addEventListener('voice-recorder-submit', async (event: Event) => {
 		window.location.href = chatGptUrl(`${input} ${store.query} ?`)
 	}
 })
+
+document.addEventListener('contextmenu', (event: MouseEvent) => {
+	event.preventDefault() // empêche le menu natif
+})

@@ -8,21 +8,18 @@ import {removeObjectKeys} from '../utils.js'
 
 export function writeComment(comment?: Comment) {
 	return new Promise((resolve, _reject) => {
-		let type: 'Create' | 'Edit'
+		let type: 'Create' | 'Update'
 		let objectId: string | undefined
+		let ctrl: Comment
 		if (comment) {
-			type = 'Edit'
+			type = 'Update'
 			objectId = comment.id
-			comment = new Comment(
-				undefined,
-				removeObjectKeys(comment.toJSON(), ['id'])
-			)
+			ctrl = new Comment(undefined, removeObjectKeys(comment.toJSON(), ['id']))
 		} else {
 			type = 'Create'
-			comment = new Comment()
+			ctrl = new Comment()
 		}
 
-		const ctrl = comment
 		const F = new FormBuilder(ctrl)
 
 		async function submit() {
@@ -31,8 +28,9 @@ export function writeComment(comment?: Comment) {
 				ctrl.timestamp = Date.now()
 				if (type === 'Create') {
 					await commentsManager.addObject(ctrl)
-				} else if (type === 'Edit' && objectId) {
-					await commentsManager.updateObject(objectId, ctrl)
+				} else if (type === 'Update' && objectId) {
+					comment!.fromObject(ctrl.toJSON())
+					await commentsManager.updateObject(objectId, ctrl.toJSON())
 				}
 				dialog.close()
 			}
@@ -56,10 +54,10 @@ export function writeComment(comment?: Comment) {
 						<md-filled-tonal-button
 							?disabled="${!ctrl.content}"
 							@click="${submit}"
-							>Create</md-filled-tonal-button
+							>${type}</md-filled-tonal-button
 						>
 						<!-- -->`,
-			}
+			},
 		)
 	})
 }

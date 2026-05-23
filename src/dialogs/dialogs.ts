@@ -75,7 +75,7 @@ export class Dialog extends LitElement {
 		public headline?: string | TemplateResult,
 		public content?: string | TemplateResult | (() => string | TemplateResult),
 		// public actions?: string | TemplateResult | (() => string | TemplateResult),
-		options?: Partial<DialogOptions>
+		options?: Partial<DialogOptions>,
 	) {
 		super()
 		this.#options = {
@@ -169,7 +169,7 @@ export class Dialog extends LitElement {
 									? this.#options.actions?.(this)
 									: this.#options.actions}
 							</div>
-					  `
+						`
 					: null}
 			</md-dialog>
 			<!-- -->`
