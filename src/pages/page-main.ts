@@ -142,6 +142,7 @@ export class PageMain extends PageElement {
 
 	clickSelectedItemElement() {
 		if (!store.query) return
+		this.selectedItemElement?.dispatchEvent(new PointerEvent('pointerup'))
 		this.selectedItemElement?.click()
 	}
 }
