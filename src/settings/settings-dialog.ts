@@ -38,7 +38,12 @@ export class SettingsDialog extends LitElement {
 
 				<form slot="content" method="dialog" id="form" class="">
 					<card-element headline="global">
-						${store.F.SELECT('Sorting method', 'sortingMethod', sortingMethods)}
+						${store.F.SELECT(
+							'Sorting method',
+							'sortingMethod',
+							sortingMethods,
+							{menuPositioning: 'popover'},
+						)}
 					</card-element>
 
 					<card-element headline="theme">
