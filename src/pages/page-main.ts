@@ -11,11 +11,10 @@ import {
 	state,
 } from 'lit/decorators.js'
 import {repeat} from 'lit/directives/repeat.js'
+import {questionDialog} from '../dialogs/question-dialog.js'
 import {store} from '../store.js'
 import {formatQuestionValue} from '../utils.js'
 import {PageElement} from './PageElement.js'
-import {questionDialog} from '../dialogs/question-dialog.js'
-import toast from 'toastit'
 
 declare global {
 	interface HTMLElementTagNameMap {
@@ -47,10 +46,12 @@ export class PageMain extends PageElement {
 	@query('md-list-item[selected]') selectedItemElement!: MdListItem
 
 	render() {
+		const questions = store.getSortedQuestions()
+
 		return html`<!---->
 			<md-list class="p-0">
 				${repeat(
-					store.questions,
+					questions,
 					(q) => q.created,
 					(question, i) => {
 						const query =
