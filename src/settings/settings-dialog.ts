@@ -1,10 +1,13 @@
 import type {MdDialog} from '@material/web/all.js'
+import '@material/web/select/filled-select.js'
+import '@material/web/select/select-option.js'
 import {withController} from '@snar/lit'
 import {customElement} from 'custom-element-decorator'
 import {html, LitElement} from 'lit'
 import {withStyles} from 'lit-with-styles'
 import {query, state} from 'lit/decorators.js'
 import '../card-element.js'
+import {sortingMethods} from '../constants.js'
 import '../material/dialog-patch.js'
 import '../material/item-patch.js'
 import {store} from '../store.js'
@@ -34,6 +37,10 @@ export class SettingsDialog extends LitElement {
 				</header>
 
 				<form slot="content" method="dialog" id="form" class="">
+					<card-element headline="global">
+						${store.F.SELECT('Sorting method', 'sortingMethod', sortingMethods)}
+					</card-element>
+
 					<card-element headline="theme">
 						${renderThemeElements()}
 					</card-element>

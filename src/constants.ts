@@ -38,3 +38,6 @@ export const defaultQuestions: medchat.QuestionInterface[] = [
 		weight: 147,
 	},
 ]
+
+export const sortingMethods = ['Creation date', 'Weight'] as const
+export type SortingMethod = (typeof sortingMethods)[number]

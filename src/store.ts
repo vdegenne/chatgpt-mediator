@@ -1,8 +1,7 @@
 import {PropertyValues, ReactiveController, state} from '@snar/lit'
 import {FormBuilder} from '@vdegenne/forms/FormBuilder.js'
 import {saveToLocalStorage} from 'snar-save-to-local-storage'
-import toast from 'toastit'
-import {availablePages, defaultQuestions} from './constants.js'
+import {availablePages, defaultQuestions, SortingMethod} from './constants.js'
 import {Page} from './pages/index.js'
 
 @saveToLocalStorage('chatgpt-mediator:store')
@@ -12,7 +11,20 @@ export class AppStore extends ReactiveController {
 	@state() query = ''
 	@state() questions: medchat.QuestionInterface[] = [...defaultQuestions]
 
+	@state() sortingMethod: SortingMethod = 'Creation date'
+
 	F = new FormBuilder(this)
+
+	getSortedQuestions() {
+		return this.questions.sort((q1, q2) => {
+			switch (this.sortingMethod) {
+				case 'Creation date':
+					return q2.created - q1.created
+				case 'Weight':
+					return q2.weight - q1.weight
+			}
+		})
+	}
 
 	protected firstUpdated(_changedProperties: PropertyValues): void {
 		this.query = ''
