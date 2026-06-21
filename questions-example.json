@@ -1,0 +1,37 @@
+{
+	"page": "main",
+	"query": "源氏（みなもとうじ/げんじ）は、日本の天皇の皇子・皇孫の中から臣籍降下し、「源（みなもと）」の本姓を授けられた氏族を指す。",
+	"questions": [
+		{"created": 1777194187057, "value": "%s ?", "weight": 432},
+		{
+			"created": 1777194187047,
+			"value": "Etymologie de \"%s\" ? Latin et/ou grec ? Idéalement découpe le mot en racines, et fais une liste simple avec une flèche pour traduire et dire les derives francais (ou dis juste si il y en a pas). Par exemple,\nστρατ- → stratégie, stratège\n-ηγός → pas de dérivé français direct productif. \nFait juste une ligne par particules !!!!! Puis donne le sens global bien sur. Merci",
+			"weight": 353
+		},
+		{"created": 1777194187017, "value": "C'est quoi \"%s\" ?", "weight": 210},
+		{"created": 1777194187077, "value": "Explique \"%s\"", "weight": 111},
+		{
+			"created": 1777194187067,
+			"value": "Peux-tu analyser le contenu de %s et me faire un résumé s'il the plait ? Merci",
+			"weight": 46
+		},
+		{
+			"created": 1780039869007,
+			"value": "Comment tu prononcerais \"%s\" ?",
+			"weight": 42
+		},
+		{"created": 1777194187037, "value": "%s", "weight": 10},
+		{
+			"created": 1780128075344,
+			"value": "C'est quoi et comment tu prononcerais \"%s\" ?",
+			"weight": 10
+		},
+		{"created": 1780926418293, "value": "C'est qui \"%s\" ?", "weight": 4},
+		{
+			"created": 1782047219962,
+			"value": "Peux-tu traduire \"%s\" en français merci",
+			"weight": 1
+		}
+	],
+	"sortingMethod": "Weight"
+}
